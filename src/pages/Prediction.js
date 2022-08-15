@@ -1,22 +1,7 @@
-import PredictionsList from "../components/PredictionList";
 import useEffect from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import { getPredictionsAction } from '../reducers/Prediction'
-import Search from "../components/Search";
-
-
-
-
-const [city, setcity] = useState();
-
-
-const handleSearch = (citi) => {
-    getPredictions(citi).then(
-        response =>{
-            setcity(response.data.results || []);
-        }
-    )
-}
+import PredictionsView from "../components/PredictionView";
+import { getPredictionsAction } from '../reducers/PredictionReducer'
 
 
 
@@ -25,17 +10,18 @@ const handleSearch = (citi) => {
 const Prediction = () => {
     const dispatch = useDispatch()
     const prediction = useSelector(state => state.prediction);
-    const predicList = prediction.predicList
+    const predicrtionList = prediction.predicrtionList;
+    
 
     useEffect(() => {
-        dispatch(getPredictionsAction())
+        dispatch(getPredictionsAction(-34.9058916,-56.1913095))
     }, [])
 
+
     return ( 
-        <div>
-            <Search search={handleSearch}/>
+        <div>           
             <h5>Lista de Predicciones</h5>
-            <PredictionsList list={predicList} />
+            <PredictionsView pList={predicrtionList}/>
         </div>
      );
 }
