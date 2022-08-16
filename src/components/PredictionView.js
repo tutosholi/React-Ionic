@@ -1,18 +1,15 @@
 import './PredictionView.css'
 
 
-const PredictionsView = ({prop}) => {
+const PredictionsView = (prop) => {
     
     return ( 
         <div>
             <div className="table">
-                {prop.pList.map(predic => {
-                    return (
-                        <div>
-                        <div className="predic" key={predic.weather.description}><h1>{predic.weather.description}</h1></div>
-                        </div>                        
-                    )
-                })}                 
+                { 
+                    <h5>p view</h5>
+                // prop.pObject.predic.weather[description]
+                }                 
             </div>
         </div>
     );
