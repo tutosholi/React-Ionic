@@ -1,30 +1,36 @@
-import {useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import PredictionsView from "../components/PredictionView";
-import { getPredictionsAction } from '../reducers/PredictionReducer'
+import { GetByCity, GetByCords } from '../reducers/PredictionReducer';
+import Search from '../components/Search';
+import { IonPage } from '@ionic/react';
+
 
 
 
 
 
 const Prediction = () => {
-    const dispatch = useDispatch()
-    const prediction = useSelector(state => state.predictionReducer);
-    const predictionList = prediction.predic;
-    {console.log("###### predictionlistresult" +  prediction.predic)}
+    const dispatch = useDispatch();
+    const cords = useSelector(state => state.predictionReducer.cords);
 
-    useEffect(() => {
-        dispatch(getPredictionsAction(-34.9058916,-56.1913095))
-    }, [dispatch])
-    
-    {console.log("###### plist" + predictionList)}
-    
-    return ( 
-        <div>           
-            <h5>Lista de Predicciones</h5>
-            <PredictionsView pObject={predictionList}/>
-        </div>
-     );
+
+
+    const getPredic = () =>{           
+        dispatch(GetByCords(cords.lat,cords.lon));
     }
+
+
+    const handleSearch = (city,country) => {  
+        const c = city[0].toUpperCase() + city.slice(1);    
+
+        dispatch(GetByCity(c,country));        
+            getPredic();
+    }
+
+    return(
+        <IonPage>
+            <Search search={handleSearch}/>                       
+        </IonPage>
+    );
+}
  
 export default Prediction;

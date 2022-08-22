@@ -1,17 +1,21 @@
+import { IonContent, IonLabel, IonTitle } from '@ionic/react';
+import { useSelector } from 'react-redux';
 import './PredictionView.css'
 
 
-const PredictionsView = (prop) => {
-    
-    return ( 
-        <div>
-            <div className="table">
-                { 
-                    <h5>p view</h5>
-                // prop.pObject.predic.weather[description]
-                }                 
-            </div>
-        </div>
+const PredictionsView = (props) => {
+    const predic = props.predic;
+        return ( 
+
+        <IonContent>
+            <IonTitle>Wheather</IonTitle>
+            <IonLabel>
+                Description: {predic.desc}<br></br> 
+            </IonLabel>
+            <IonLabel>
+                Temp: {predic.temp} 
+            </IonLabel>
+        </IonContent>
     );
 }
  

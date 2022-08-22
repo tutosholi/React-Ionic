@@ -1,16 +1,20 @@
+import { IonButton, IonContent, IonSearchbar } from "@ionic/react";
+import { useState } from "react";
+
+
 const Search = (props) => {
+const [search, setserch] = useState ("") ;
 
-    const handleSearch = (value) => {
-        props.search(value)
-    }
 
+const handlesearch = (value) =>{
+    props.search(value);
+}
     return (
-        <div className="App" align="center">
-            <h1>Google</h1>
-            <input type="text" name="Google" id="" className="form-control" onBlur={(e)=>{
-                handleSearch(e.target.value)                
-            }}/>
-        </div>
+        <IonContent>
+            <IonSearchbar onIonChange={(e)=>{setserch(e.target.value)}}>
+            </IonSearchbar>
+            <IonButton onClick={()=>{handlesearch(search)}}>Buscar</IonButton>
+        </IonContent>
     );
 }
 
