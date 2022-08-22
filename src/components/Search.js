@@ -1,6 +1,6 @@
-import { IonButton, IonContent, IonSearchbar } from "@ionic/react";
+import { IonButton, IonContent, IonIcon, IonSearchbar } from "@ionic/react";
 import { useState } from "react";
-
+import { createOutline } from 'ionicons/icons'
 
 const Search = (props) => {
 const [search, setserch] = useState ("") ;
@@ -11,9 +11,9 @@ const handlesearch = (value) =>{
 }
     return (
         <IonContent>
-            <IonSearchbar onIonChange={(e)=>{setserch(e.target.value)}}>
+            <IonSearchbar onIonChange={(e)=>{setserch(e.target.value)}}>            
+                <IonButton onClick={()=>{handlesearch(search)}}><IonIcon icon={createOutline}/></IonButton>
             </IonSearchbar>
-            <IonButton onClick={()=>{handlesearch(search)}}>Buscar</IonButton>
         </IonContent>
     );
 }

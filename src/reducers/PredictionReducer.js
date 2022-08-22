@@ -1,4 +1,4 @@
-import { getByCords,getByCityName,get3Days } from "../api/axios";
+import { getByCords,getByCityName,get5Days } from "../api/axios";
 
 
 const GET_BYCORDS = "GET_BYCORDS"
@@ -8,7 +8,7 @@ const GET_3DAYS = "GET_3DAYS"
 const initialState = {  
     cords:{}, 
     predic: {},
-    treedays: [] 
+    fiveDays: []
     }
 
 export default function predictionReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ export default function predictionReducer(state = initialState, action) {
         case GET_BYNAME:          
             return ({...state, cords: action.payload});
         case GET_3DAYS:
-            return ({...state, treedays: action.payload})
+            return ({...state, fiveDays: action.payload})
     default:
         return state;
     }
@@ -56,14 +56,14 @@ export const GetByCords = (lat,lon) => (dispatch) =>{
         }) 
     })
 }
-export const Get3Days = (lat,lon) => (dispatch) =>{
-    get3Days(lat,lon).then((results) =>{
+export const Get5Days = (lat,lon) => (dispatch) =>{
+    get5Days(lat,lon).then((results) =>{
 
-        const treedays = [results.data.list];
-        console.log("#############" + treedays)
+        const fiveDays = results.data.list;
+        console.log("#############" + fiveDays)
         dispatch({
             type: GET_3DAYS,
-            payload: treedays
+            payload: fiveDays
         })
     })
 }

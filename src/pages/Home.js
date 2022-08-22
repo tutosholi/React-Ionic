@@ -1,14 +1,20 @@
-import {IonContent, IonPage, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
+import {IonContent, IonPage, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonLabel, IonToolbar, IonHeader } from '@ionic/react';
 import { Route } from 'react-router-dom';
 
 import './Home.css';
-import PredictionView from './PredictionView';
 import Prediction from './Prediction';
+import PredictionView from './PredictionView';
 
 
 
 
 const Home = () => {
+const nav = () =>{
+  
+}
+
+
+
 
   return (
     <IonPage>
@@ -28,6 +34,7 @@ const Home = () => {
           </IonTabBar>
         </IonTabs>
       </IonContent>
+      
     </IonPage>
   );
 };

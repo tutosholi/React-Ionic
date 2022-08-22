@@ -11,6 +11,6 @@ export const getByCityName = (city,country = "UY") => {
 }
 
 
-export const get3Days = (lat, long) => {
+export const get5Days = (lat, long) => {
     return axios.get(`http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=5cce8160a0e13202538fcc384656e37b`)
 }
