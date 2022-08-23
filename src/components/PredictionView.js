@@ -1,4 +1,4 @@
-import { IonCard, IonContent, IonHeader, IonImg, IonItem, IonLabel, IonTitle, IonToolbar } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCol, IonContent, IonGrid, IonHeader, IonImg, IonItem, IonLabel, IonRow, IonTitle, IonToolbar } from '@ionic/react';
 import './PredictionView.css'
 
 
@@ -10,37 +10,47 @@ const PredictionsView = (props) => {
 
         return ( 
             <IonContent>   
-
-        <IonHeader>
-            <IonToolbar>
-                <IonTitle>Today</IonTitle>
+                <IonGrid>                
                 <IonItem>
+                <IonTitle>Today</IonTitle>
                 <IonLabel>
                     {predic.desc}<br></br> 
                 </IonLabel>
                 <IonLabel>
                     {predic.temp} ºC
                 </IonLabel>
+                <IonImg src={`http://openweathermap.org/img/wn/${predic.icon}@2x.png`}/>
             </IonItem>
-            </IonToolbar>
-        </IonHeader>
-       
+            </IonGrid>
+            
+            
+            <IonGrid>
+            <IonRow>
+                <IonCol size='7' offset='3'>
+            
             
                 {fiveDays.map((day) => {
                     return (
 
                         
-                        <IonCard>
-                        <IonItem key={day.dt}>
-                            <IonTitle>{day.dt_txt}</IonTitle>
-                            <IonLabel>{day.weather[0].description}ºF</IonLabel>
-                            <IonLabel>{day.main.temp} ºF</IonLabel>
+                        <IonCard key={day.dt}>
+                            <IonCardHeader>     
+                            <IonTitle>{day.dt_txt}</IonTitle> 
+                            </IonCardHeader>
                             <IonImg src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}/>
-                        </IonItem> 
+                            <IonCardContent>
+                            <IonLabel>{day.weather[0].description}</IonLabel><br/>                                                      
+                            <IonLabel>{day.main.temp} ºC</IonLabel>
+                            </IonCardContent>                   
                         </IonCard>
+                        
                         )
                     })
                 }
+            
+            </IonCol>
+            </IonRow>
+            </IonGrid>
             
         </IonContent>
           

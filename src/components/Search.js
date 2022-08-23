@@ -7,13 +7,15 @@ const [search, setserch] = useState ("") ;
 
 
 const handlesearch = (value) =>{
+
     props.search(value);
+    
 }
     return (
-        <IonContent>
-            <IonSearchbar onIonChange={(e)=>{setserch(e.target.value)}}>            
-                <IonButton onClick={()=>{handlesearch(search)}}><IonIcon icon={createOutline}/></IonButton>
-            </IonSearchbar>
+        <IonContent> 
+        <IonSearchbar onIonChange={(e)=>{setserch(e.target.value)}}>            
+            <IonButton onClick={()=>{handlesearch(search)}}><IonIcon icon={createOutline}/></IonButton>
+        </IonSearchbar>    
         </IonContent>
     );
 }
