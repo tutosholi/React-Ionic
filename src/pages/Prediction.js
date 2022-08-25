@@ -1,45 +1,26 @@
-import {useDispatch, useSelector} from 'react-redux';
-import { Get5Days, GetByCity, GetByCords } from '../reducers/PredictionReducer';
+import {useDispatch} from 'react-redux';
+import { GetByCity } from '../reducers/PredictionReducer';
 import Search from '../components/Search';
-import {  IonPage } from '@ionic/react';
-
-
-
-
+import { useState } from 'react';
 
 
 
 
 const Prediction = () => {
+    
     const dispatch = useDispatch();
-    const cords = useSelector(state => state.predictionReducer.cords);
+    const [Searched, setSearched] = useState([]);
 
-    const get5DaysArray =()=>{
-        dispatch(Get5Days(cords.lat,cords.lon))
-        
-    }
-
-   
-    const getPredic = () =>{           
-        dispatch(GetByCords(cords.lat,cords.lon));
-            get5DaysArray();
-    }
-
-
-    const handleSearch = (city,country) => {  
-
+    const handleSearch = (city,country) => { 
         const c = city[0].toUpperCase() + city.slice(1);    
-        dispatch(GetByCity(c,country));        
-            getPredic();
-            
+        setSearched([...Searched,c]);
+        localStorage.setItem('Searched', JSON.stringify({List:Searched}));
+        dispatch(GetByCity(c,country));
     }
 
-    return(         
-        <IonPage>
-           
-            <Search search={handleSearch}/>
-                     
-        </IonPage>
+
+    return(                           
+        <Search search={handleSearch}/>                                         
     );
     
 }

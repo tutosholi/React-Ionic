@@ -12,8 +12,7 @@ const initialState = {
     fiveDays: []
 }
 
-export default function predictionReducer(state = initialState, action) {
-    
+export default function predictionReducer(state = initialState, action) {    
     switch (action.type) {
         case GET_BYCORDS:          
             return ({...state, predic: action.payload}); 
@@ -33,17 +32,19 @@ export const GetByCity =(city,country) => (dispatch) => {
             lat: results.data[0].lat,
             lon:results.data[0].lon
         }
-        console.log("#############" + cords4.lon)
-        console.log("#############" + cords4.lat)
+
         dispatch({
             type: GET_BYNAME,
-            payload:cords4
-            
+            payload:cords4            
         }) 
+
+        dispatch(
+            GetByCords(cords4.lat,cords4.lon),            
+        ) 
     })
+       
 }
-export const GetByCords = (lat,lon) => (dispatch) =>{
-    
+export const GetByCords = (lat,lon) => (dispatch) =>{    
     getByCords(lat, lon).then((results) => {
 
         const predic = {
@@ -51,25 +52,25 @@ export const GetByCords = (lat,lon) => (dispatch) =>{
             temp: results.data.main.temp,
             icon: results.data.weather[0].icon
             }
-        console.log("#############" + predic.desc)
-        console.log("#############" + predic.temp)
-        console.log("#############" + predic.icon)
+
         dispatch({
             type: GET_BYCORDS,
             payload: predic            
         }) 
+        dispatch(
+            Get5Days(lat,lon)
+        )
     })
+    
 }
 export const Get5Days = (lat,lon) => (dispatch) =>{
     get5Days(lat,lon).then((results) =>{
 
         const fiveDays = results.data.list;
-        console.log("#############" + fiveDays)
         dispatch({
             type: GET_3DAYS,
             payload: fiveDays
-        })
-        
+        })        
     })
 }
 

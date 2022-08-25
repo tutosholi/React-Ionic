@@ -1,6 +1,10 @@
-import { IonPage } from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
 import { useSelector } from "react-redux";
+import FiveDaysView from "../components/5DaysView";
 import PredictionsView from "../components/PredictionView";
+
+
+
 
 
 const PredictionView = () => {
@@ -8,9 +12,11 @@ const PredictionView = () => {
     const fiveDays = useSelector(state => state.predictionReducer.fiveDays);
 
     return ( 
-    <IonPage>
-        <PredictionsView predic={predic} fiveDays={fiveDays}/>
-    </IonPage> );
+        <IonContent>
+        <PredictionsView predic={predic}/>
+        <FiveDaysView fiveDays={fiveDays}/> 
+        </IonContent>
+    );
 }
  
 export default PredictionView;

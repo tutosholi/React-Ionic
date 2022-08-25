@@ -10,24 +10,20 @@ import PredictionView from './PredictionView';
 
 const Home = () => {
 
-
-
-
-
   return (
     <IonPage>
       <IonContent>
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/Prediction" component={Prediction}/>
-            <Route path="/Pagina2" component={PredictionView}/>        
+            <Route path="/PredictionView" component={PredictionView}/>        
           </IonRouterOutlet>
           <IonTabBar slot="bottom" >
             <IonTabButton tab="tabPrediction" href="/Prediction">
               <IonIcon icon={search} />
               <IonLabel>Search</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="tabPagina2" href="/Pagina2">
+            <IonTabButton tab="tabPredictionView" href="/PredictionView">
             <IonIcon icon={calendar} />
               <IonLabel>View</IonLabel>
             </IonTabButton>
